@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row question-list-header">
+            <h1>Questions</h1>
+            <a href="{% url 'question_new' %}" class="btn btn-primary ml-auto ask-button">Ask a Question</a>
+        </div>
+        {% for question in questions %}
+        <div class="row question-list-question">
+            <div class="col-md-1" style="text-align: center">
+                <span class="question-list-answers">{{ question.answers.count }} Answers</span>
+            </div>
+            <div class="col-md-11">
+                <a class="question-list-title" href="{% url 'question' questionid=question.id %}">{{ question.title }}</a>
+                <p class="question-list-body">{{ question.body|truncatewords:60 }}</p>
+                <p class="question-list-details">Asked by <a href="{% url 'user_profile' question.author.id %}">{{ question.author }}</a> on {{ question.date }}</p>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="row mx-auto">
+            <nav class="mx-auto" aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if page.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">Previous</a></li>
+                    {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    {% endif %}
+
+                    {% for i in page.paginator.page_range %}
+                        {% if page.number == i %}
+                            <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">Next</a></li>
+                    {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+{% endblock %}

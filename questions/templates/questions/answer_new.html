@@ -1,0 +1,16 @@
+{% extends 'questions/question.html' %}
+
+{% block answerform %}
+<div class="container answer-new-container">
+    <h4 class="answer-new-header">Leave an answer</h4>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if user.is_authenticated %}
+            <input class="btn btn-primary" type="submit" value="Post">
+        {% else %}
+            You must login before you can answer this question.
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

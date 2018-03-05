@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row question-question">
+            <div class="col-md-12">
+                <h3 class="question-title">{{ question.title }}</h3>
+                <p class="question-list-body">{{ question.body }}</p>
+                <div class="question-details">
+                    Asked by <a href="{% url 'user_profile' question.author.id %}">{{ question.author }}</a> on {{ question.date }}
+                    {% if user == question.author %}
+                        <span class="question-actions">
+                            <a href="{% url 'question_edit' questionid=question.id %}">Edit</a> <a href="{% url 'question_delete' questionid=question.id %}">Delete</a>
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% if best_answer is not None %}
+            <div class="question-answer-container">
+                <h4 class="question-answer-best-header">Best Answer</h4>
+                <p class="question-answer-body">{{ best_answer.text }}</p>
+                <div class="question-details">
+                    Answered by <a href="{% url 'user_profile' best_answer.author.id %}">{{ best_answer.author }}</a> on {{ best_answer.date}}
+
+                    <span class="question-actions">
+                    {% if user == question.author %}
+                        <a href="{% url 'answer_best' answerid=best_answer.id questionid=question.id %}">Remove Best Answer</a>
+                    {% endif %}
+                    {% if user == best_answer.author %}
+                        <a href="{% url 'answer_delete' answerid=best_answer.id questionid=question.id %}">Delete</a>
+                    {% endif %}
+                    </span>
+                </div>
+            </div>
+        {% endif %}
+
+        {% for answer in question.answers.all %}
+            {% if answer.best_answer is not True %}
+                <div class="question-answer-container">
+                    <p class="question-answer-body">{{ answer.text }}</p>
+                    <div class="question-details">
+                        <a href="{% url 'user_profile' question.author.id %}">{{ answer.author }}</a> on {{ answer.date}}
+
+                        <span class="question-actions">
+                        {% if best_answer is None and user == question.author %}
+                            <a href="{% url 'answer_best' answerid=answer.id questionid=question.id %}">Best Answer</a>
+                        {% endif %}
+                        {% if user == answer.author %}
+                            <a href="{% url 'answer_delete' answerid=answer.id questionid=question.id %}">Delete</a>
+                        {% endif %}
+                        </span>
+                    </div>
+                </div>
+            {% endif %}
+        {% empty %}
+            <p>No answers yet</p>
+        {% endfor %}
+
+        {% block answerform %}
+        {% endblock answerform %}
+
+    </div>
+{% endblock content %}
