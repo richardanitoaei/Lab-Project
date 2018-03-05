@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3><a href="{% url 'user_profile' targetuser.id %}">{{ targetuser.username }}</a>'s Answers</h3>
+    {% for answer in answers %}
+        <div>
+            <p>
+                <span>{{ answer.question.answers.count }} Answers</span>
+                <a href="{% url 'question' questionid=answer.question.id %}">{{ answer.question.title }}</a>
+                <span>Answered on {{ answer.date }}</span>
+            </p>
+        </div>
+    {% empty %}
+        <p>{{ targetuser.username }} has not answered any questions.</p>
+    {% endfor %}
+{% endblock %}

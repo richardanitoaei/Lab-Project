@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <div>
+            <div class="container">
+                <div class="row user-profile-header">
+                    <div class="col">
+                        <h2>{{ targetuser.username }}'s profile</h2>
+                        <p>{{ targetuser.email }}</p>
+                    </div>
+                </div>
+
+                <div class="user-profile-recent-questions">
+                    <h3>Recently Asked Questions</h3>
+                    {% for question in questions %}
+                        <div class="row user-profile-entry">
+                            <span class="col-md-1 user-profile-entry-answers">{{ question.answers.count }} Answers</span>
+                            <a class="col-md-8 user-profile-entry-title" href="{% url 'question' questionid=question.id %}">{{ question.title }}</a>
+                            <span class="col-md-3 user-profile-entry-date">Asked on {{ question.date }}</span>
+                        </div>
+                    {% empty %}
+                        <p>{{ targetuser.username }} has not asked any questions.</p>
+                    {% endfor %}
+                    {% if questions_count > 5 %}
+                        <p><a href="{% url 'user_questions' userid=targetuser.id%}">View all {{ questions_count }} questions</a></p>
+                    {% endif %}
+                </div>
+
+                <div class="user-profile-recent-answers">
+                    <h3>Recently Answered Questions</h3>
+                    {% for answer in answers %}
+                        <div class="row user-profile-entry">
+                            <span class="col-md-1 user-profile-entry-answers">{{ answer.question.answers.count }} Answers</span>
+                            <a class="col-md-8 user-profile-entry-title" href="{% url 'question' questionid=answer.question.id %}">{{ answer.question.title }}</a>
+                            <span class="col-md-3 user-profile-entry-date">Answered on {{ answer.date }}</span>
+                        </div>
+                    {% empty %}
+                        <p>{{ targetuser.username }} has not answered any questions.</p>
+                    {% endfor %}
+                    {% if answers_count > 5 %}
+                        <p><a href="{% url 'user_answers' userid=targetuser.id%}">View all {{ answers_count }} answers</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

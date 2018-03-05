@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container user-list-user-list" style="text-align: center">
+        <h1 class="user-list-header">Users</h1>
+        <div class="row">
+            <div class="col">
+            <div class="user-list-item-list-container">
+                <ul class="user-list-item-list">
+                    {% for user in users %}
+                        <li><a href="{% url 'user_profile' user.id %}">{{ user.username }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mx-auto">
+        <nav class="mx-auto" aria-label="Page navigation example">
+            <ul class="pagination">
+                {% if page.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">Previous</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                {% endif %}
+
+                {% for i in page.paginator.page_range %}
+                    {% if page.number == i %}
+                        <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">Next</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+{% endblock %}
