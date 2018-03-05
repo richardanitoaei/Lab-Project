@@ -1,0 +1,162 @@
+/* Home Page */
+.home-container {
+    text-align: center;
+    margin-top: 16%;
+}
+
+/* Question List Page */
+.question-list-header {
+    margin-top: 60px;
+    margin-left: 0px;
+    margin-bottom: 42px;
+}
+
+.question-list-question {
+    margin-bottom: 20px;
+}
+
+.question-list-title {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.question-list-body {
+    font-size: 16px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.question-list-details {
+    font-size: 12px;
+}
+
+.question-list-answers {
+}
+
+.ask-button {
+    height: 40px;
+    margin-top: 8px;
+    margin-right: 15px;
+}
+
+/* Question Page */
+.question-question {
+    margin-top: 70px;
+    margin-bottom: 40px;
+}
+
+.question-title {
+    font-size: 28px;
+    color: #007bff;
+}
+
+.question-details {
+    font-size: 12px;
+}
+
+.question-actions {
+    float: right;
+}
+
+.question-answer-container {
+    margin-bottom: 30px;
+}
+
+.question-answer-body {
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+
+.question-answer-best-header {
+    font-size: 18px;
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+/* Question New Page */
+.question-new-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.question-new-container input[type=text] {
+    width: 50%;
+}
+
+.question-new-container textarea {
+    width: 50%;
+}
+
+.question-new-header {
+    margin-bottom: 40px;
+}
+
+/* Answer new Page */
+.answer-new-container {
+    margin-top: 40px;
+    margin-left: -14px;
+}
+
+.answer-new-container textarea {
+    width: 50%;
+}
+
+/* Form Page */
+.form-container {
+    text-align: center;
+}
+
+.form-container p {
+}
+
+/* User Page*/
+.user-profile-header {
+    margin-top: 70px;
+    margin-bottom: 0px;
+}
+
+.user-profile-recent-questions {
+    margin-top: 40px;
+}
+
+.user-profile-recent-answers {
+    margin-top: 40px;
+}
+
+.user-profile-entry {
+    margin-bottom: 10px;
+}
+
+.user-profile-entry-answers {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.user-profile-entry-title {
+}
+
+.user-profile-entry-date {
+    text-align: right;
+    font-size: 14px;
+}
+
+/* User List Page */
+.user-list-user-list {
+    margin-bottom: 50px;
+}
+
+.user-list-header {
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.user-list-item-list-container {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+}
+
+.user-list-item-list {
+    margin: 0;
+    list-style: none;
+}
