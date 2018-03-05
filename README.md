@@ -1,4 +1,4 @@
-# 5CCS2SEG_Lab_Project
+# Lab Project
 ## Team Wisteria
 * Hamza Chowdhury
 * Jeongho (Jeongho) Suh
